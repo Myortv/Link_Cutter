@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'djangorestframework',
+    'rest_framework',
 
     'link_shortener.apps.LinkShortenerConfig',
-
+    'account.apps.AccountConfig'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'link_shortener.urls'
+ROOT_URLCONF = 'Link_Cutter.urls'
 
 TEMPLATES = [
     {
@@ -77,6 +77,9 @@ WSGI_APPLICATION = 'Link_Cutter.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+import os
+
 
 DATABASES = {
     'default' : {
@@ -106,6 +109,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 
 
 # Internationalization
