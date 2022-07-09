@@ -14,6 +14,8 @@ class LinkSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
+        user = self.context['request'].user
         link = Link.objects.update_or_create(**validated_data)[0]
-        link.users.add(self.context['request'].user)
+        if user.is_authenticated:
+            link.users.add(self.context['request'].user)
         return link

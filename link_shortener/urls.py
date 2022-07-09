@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import LinkListCreateApiView
+from .views import LinkListCreateApiView, redirect_view
 
 
 urlpatterns = [
-    path('cut', LinkListCreateApiView.as_view()),
-    # path('api/link/', LinkRetrieveApiView.as_view(), name='api-link')
+    path('api/link', LinkListCreateApiView.as_view()),
+    path('<str:hash>/', redirect_view, name='redirect')
 ]
