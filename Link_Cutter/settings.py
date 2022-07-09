@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_filters',
 
     'link_shortener.apps.LinkShortenerConfig',
     'account.apps.AccountConfig'
