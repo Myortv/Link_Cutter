@@ -84,7 +84,7 @@ import os
 
 DATABASES = {
     'default' : {
-        'NAME' : 'test_task',
+        'NAME' : 'test_task_random_url',
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
         'USER' : os.getenv('DB_USER'),
         'PASSWORD' : os.getenv('DB_USER_PASS'),
