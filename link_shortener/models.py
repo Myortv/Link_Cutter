@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Link(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     original_link = models.TextField()
     hashed_url = models.SlugField(max_length=32, blank=True)
 

@@ -1,4 +1,5 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView
 
 from rest_framework.generics import ListCreateAPIView
 
@@ -13,9 +14,10 @@ class LinkListCreateApiView(ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         if user.is_authenticated:
-            return self.queryset.filter(users=user)
+            return self.queryset.filter(user=user)
         else:
             return None
+
 
 def redirect_view(request, hash):
     link = Link.objects.get(hashed_url=hash)
@@ -23,5 +25,5 @@ def redirect_view(request, hash):
     return response
 
 
-class LinkCutView():
-    pass
+def link_view(request):
+    return render(request, 'link_create.html')
