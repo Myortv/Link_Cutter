@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView
+from django.views.generic import ListView
 
 from rest_framework.generics import ListCreateAPIView
+
 
 from .models import Link
 from .serializers import LinkSerializer
@@ -27,3 +28,12 @@ def redirect_view(request, hash):
 
 def link_view(request):
     return render(request, 'link_create.html')
+
+
+class LinkListView(ListView):
+    model = Link
+    template_name = 'link_list.html'
+    context_object_name = 'links'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)

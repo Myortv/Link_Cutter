@@ -2,7 +2,8 @@ var app = new Vue({
   el: '#app',
   data: {
     outurl: 'Сначала введите Url для сокращения!',
-    inputurl: ""
+    inputurl: "",
+    base_url:  location.protocol.concat("//").concat(window.location.hostname).concat(':').concat(location.port).concat('/'),
 
   },
   methods: {
@@ -21,7 +22,7 @@ var app = new Vue({
 
       })
       .then(response => {
-      this.outurl = 'http://localhost:8008/' + response['data']['hashed_url']
+      this.outurl = this.base_url + response['data']['hashed_url']
       })
 
 
