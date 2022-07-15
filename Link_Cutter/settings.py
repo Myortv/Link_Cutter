@@ -84,7 +84,7 @@ import os
 
 DATABASES = {
     'default' : {
-        'NAME' : 'test_task',
+        'NAME' : 'test_task_random_url',
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
         'USER' : os.getenv('DB_USER'),
         'PASSWORD' : os.getenv('DB_USER_PASS'),
@@ -138,6 +138,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
