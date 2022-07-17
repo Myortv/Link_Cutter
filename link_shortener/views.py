@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import AnonymousUser
 
 from rest_framework.generics import ListCreateAPIView
 
@@ -30,10 +32,12 @@ def link_view(request):
     return render(request, 'link_create.html')
 
 
-class LinkListView(ListView):
+class LinkListView(LoginRequiredMixin, ListView):
     model = Link
     template_name = 'link_list.html'
     context_object_name = 'links'
 
     def get_queryset(self):
+        if isinstance(self.request.user, AnonymousUser):
+            return None
         return self.model.objects.filter(user=self.request.user)

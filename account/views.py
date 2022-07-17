@@ -8,7 +8,7 @@ from .forms import UserCreationForm
 
 class LogInView(LoginView):
     template_name='login.html'
-    next_page = 'cut'
+    next_page = 'cut-link'
 
 
 class SignUpView(CreateView):
