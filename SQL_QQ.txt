@@ -1,0 +1,30 @@
+-- 1 запрос
+
+SELECT
+    sum(outcome='win') as 'win',
+    sum(outcome='lose') as 'lose',
+    client_number
+FROM
+    event_value
+INNER JOIN
+    bid
+ON
+    event_value.play_id=bid.play_id
+GROUP By
+    bid.client_number;
+
+
+-- 2 запрос
+
+SELECT
+    IF
+        (
+            home_team > away_team,
+            CONCAT_WS(" - " , home_team, away_team),
+            CONCAT_WS(" - " , away_team, home_team)
+        ) as game,
+   Count(play_id) as 'amount of games'
+FROM
+    event_entity
+GROUP BY
+    game;
